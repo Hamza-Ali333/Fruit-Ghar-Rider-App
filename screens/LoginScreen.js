@@ -6,8 +6,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import MyButton from '../components/MyButton';
 import MyTextInput from '../components/MyTextInput';
 import Colors from '../constants/Colors';
@@ -17,125 +16,281 @@ import ErrorText from '../components/RedColorText';
 
 
 
-const LoginScreen = props => {
-    const [errorVisibility, setErrorVisibility] = useState(false);
-    const [userEmail, setUserEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
-    
+// const LoginScreen = props => {
+//     const [errorVisibility, setErrorVisibility] = useState(false);
+//     const [userEmail, setUserEmail] = useState('');
+//     const [userPassword, setUserPassword] = useState('');
 
-    return (
 
-        <View style={styles.screen}>
+//     return (
 
-            <Image
-                resizeMode='contain'
-                style={styles.logoImageStyle}
-                source={require('../assets/images/logo.png')}
-            />
+//         <View style={styles.screen}>
 
-            {
-                errorVisibility ? (<ErrorText style={styles.errorText}>
-                    Oh no! Your account or password is incorrect, please check again.
-                </ErrorText>) : null
-            }
+//             <Image
+//                 resizeMode='contain'
+//                 style={styles.logoImageStyle}
+//                 source={require('../assets/images/logo.png')}
+//             />
 
-            <MyTextInput
-                style={
-                    {
-                        marginTop: '15%'
+//             {
+//                 errorVisibility ? (<ErrorText style={styles.errorText}>
+//                     Oh no! Your account or password is incorrect, please check again.
+//                 </ErrorText>) : null
+//             }
+
+//             <MyTextInput
+//                 style={
+//                     {
+//                         marginTop: '15%'
+//                     }
+//                 }
+//                 placeholder="User Name"
+//                 onChangeText={(email) => { setUserEmail(email) }}
+//                 value={userEmail}
+//             />
+
+//             <MyTextInput
+//                 placeholder="Password"
+//                 secureTextEntry={true}
+//                 onChangeText={(password) => { setUserPassword(password) }}
+//                 value={userPassword}
+//             />
+
+//             <View style={styles.forgetTextContainer}>
+//                 <TouchableOpacity onPress={() => {
+//                     props.navigation.navigate('forgotPasswordScreen')
+//                 }}>
+//                     <NormalText style={styles.forgetPasswordtext}>
+//                         Forget Password?
+//                 </NormalText>
+//                 </TouchableOpacity>
+//             </View>
+
+
+//             <MyButton
+//                 onPress={
+//                     () => { }
+//                 }
+//             >
+//                 Login
+//                     </MyButton>
+
+
+
+//             <View style={styles.imagesContainer}>
+
+//                 <TouchableOpacity onPress={() => { }}>
+//                     <Image
+//                         style={styles.containerImageSize}
+//                         resizeMode='contain'
+//                         source={require('../assets/images/facebook.png')}
+//                     />
+//                 </TouchableOpacity>
+
+//                 <TouchableOpacity onPress={() => { }}>
+//                     <Image
+//                         style={styles.containerImageSize}
+//                         resizeMode='contain'
+//                         source={require('../assets/images/google.png')}
+//                     />
+//                 </TouchableOpacity>
+
+//                 <TouchableOpacity onPress={() => { }}>
+//                     <Image
+//                         style={styles.containerImageSize}
+//                         resizeMode='contain'
+//                         source={require('../assets/images/twitter.png')}
+//                     />
+//                 </TouchableOpacity>
+
+//             </View>
+
+
+//             <View style={styles.notHaveAcountTextContainer}>
+//                 <TouchableOpacity
+//                     onPress={() => {
+//                         props.navigation.push('createAccountScreen')
+//                     }}
+
+//                     style={styles.newAcountText}>
+
+//                     <NormalText>
+//                         You don’t have an account?
+//     </NormalText>
+
+//                     <ErrorText
+//                         style={{
+//                             marginLeft: 5,
+//                         }}>
+//                         Sign up
+//     </ErrorText>
+
+//                 </TouchableOpacity>
+//             </View>
+
+
+
+
+//         </View>
+
+
+//     )
+// }
+
+export default class LoginScreen extends React.Component {
+constructor(props){
+    super(props),
+    this.state = {
+        errorVisibility: false,
+        userEmail: '',
+        userPassword: ''
+    }
+
+
+}
+
+
+
+setErrorVisibility = () =>{
+    this.setState({errorVisibility: true})
+}
+
+setUserEmail = (text) => {
+    this.setState({userEmail: text})
+}
+
+setUserPassword = (text) => {
+    this.setState({userPassword: text})
+}
+
+async LoginState(){
+    let data = this.state.userEmail + this.state.userPassword
+    try {
+        await AsyncStorage.setItem(
+            'LOGIN', JSON.stringify(data)
+        );
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+async componentDidMount() {
+    // await this.Navigation_helper()
+  }
+
+
+
+
+
+    render() {
+        return (
+            <View style={styles.screen}>
+                <Image
+                    resizeMode='contain'
+                    style={styles.logoImageStyle}
+                    source={require('../assets/images/logo.png')}
+                />
+
+                {
+                    this.state.errorVisibility ? (<ErrorText style={styles.errorText}>
+                        Oh no! Your account or password is incorrect, please check again.
+                    </ErrorText>) : null
+                }
+
+                <MyTextInput
+                    style={
+                        {
+                            marginTop: '15%'
+                        }
                     }
-                }
-                placeholder="User Name"
-                onChangeText={(email) => { setUserEmail(email) }}
-                value={userEmail}
-            />
+                    placeholder="User Name"
+                    onChangeText={(email) => {this.setUserEmail(email) }}
+                    value={this.state.userEmail}
+                />
 
-            <MyTextInput
-                placeholder="Password"
-                secureTextEntry={true}
-                onChangeText={(password) => { setUserPassword(password) }}
-                value={userPassword}
-            />
+                <MyTextInput
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    onChangeText={(password) => { this.setUserPassword(password) }}
+                    value={this.state.userPassword}
+                />
 
-            <View style={styles.forgetTextContainer}>
-                <TouchableOpacity onPress={() => {
-                    props.navigation.navigate('forgotPasswordScreen')
-                }}>
-                    <NormalText style={styles.forgetPasswordtext}>
-                        Forget Password?
+                <View style={styles.forgetTextContainer}>
+                    <TouchableOpacity onPress={() => {
+                        this.props.navigation.navigate('forgotPasswordScreen')
+                    }}>
+                        <NormalText style={styles.forgetPasswordtext}>
+                            Forget Password?
                 </NormalText>
-                </TouchableOpacity>
-            </View>
+                    </TouchableOpacity>
+                </View>
 
 
-            <MyButton
-                onPress={
-                    () => {}
-                }
-            >
-                Login
+                <MyButton
+                    onPress={() => {this.LoginState()}}
+                >
+                    Login
                     </MyButton>
 
 
 
-            <View style={styles.imagesContainer}>
+                <View style={styles.imagesContainer}>
 
-                <TouchableOpacity onPress={()=> { }}>
-                    <Image
-                        style={styles.containerImageSize}
-                        resizeMode='contain'
-                        source={require('../assets/images/facebook.png')}
-                    />
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { }}>
+                        <Image
+                            style={styles.containerImageSize}
+                            resizeMode='contain'
+                            source={require('../assets/images/facebook.png')}
+                        />
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => {}}>
-                    <Image
-                        style={styles.containerImageSize}
-                        resizeMode='contain'
-                        source={require('../assets/images/google.png')}
-                    />
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { }}>
+                        <Image
+                            style={styles.containerImageSize}
+                            resizeMode='contain'
+                            source={require('../assets/images/google.png')}
+                        />
+                    </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => { }}>
-                    <Image
-                        style={styles.containerImageSize}
-                        resizeMode='contain'
-                        source={require('../assets/images/twitter.png')}
-                    />
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => { }}>
+                        <Image
+                            style={styles.containerImageSize}
+                            resizeMode='contain'
+                            source={require('../assets/images/twitter.png')}
+                        />
+                    </TouchableOpacity>
 
-            </View>
+                </View>
 
 
-            <View style={styles.notHaveAcountTextContainer}>
-                <TouchableOpacity
-                    onPress={() => {
-                        props.navigation.push('createAccountScreen')
-                    }}
-                   
-                    style={styles.newAcountText}> 
+                <View style={styles.notHaveAcountTextContainer}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            this.props.navigation.push('createAccountScreen')
+                        }}
 
-                    <NormalText>
-                        You don’t have an account?
+                        style={styles.newAcountText}>
+
+                        <NormalText>
+                            You don’t have an account?
     </NormalText>
 
-                    <ErrorText
-                        style={{
-                            marginLeft: 5,
-                        }}>
-                        Sign up
+                        <ErrorText
+                            style={{
+                                marginLeft: 5,
+                            }}>
+                            Sign up
     </ErrorText>
 
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
+
+
+
+
             </View>
-
-
-
-
-        </View>
-
-
-    )
+        )
+    }
 }
 
 
@@ -183,11 +338,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     notHaveAcountTextContainer: {
-        height: 100,
+        flex: 1,
         width: '90%',
         marginTop: '5%',
         alignItems: 'center'
     }
 });
 
-export default LoginScreen;
