@@ -15,6 +15,9 @@ const CreateAccountScreen = props => {
     return (
         <View style={styles.screen}>
 
+        <View style={styles.container}>
+
+            <View style={styles.headingContainer}>
             <HeadingText>
                 Create New Account
     </HeadingText>
@@ -22,6 +25,10 @@ const CreateAccountScreen = props => {
             <ErrorText>Please Enter Correct Information!</ErrorText>
 
 
+            </View>
+
+            
+            
             <MyInputText
                 style={{
                     marginTop: 30
@@ -55,6 +62,8 @@ const CreateAccountScreen = props => {
                 Continue
     </MyButton>
 
+            </View>
+
 
 
         </View>
@@ -66,6 +75,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: Colors.backgroundColor,
         padding: Paddings.normalPadding,
+    },
+    headingContainer:{
+        marginTop: '10%',
+    },
+    container:{
+        alignItems:'center',
+        justifyContent: 'center'
     },
     inputTextMargins: {
         marginTop: 10
