@@ -20,7 +20,6 @@ export default class SplashScreen extends React.Component {
     }
 
 
-
     async time_out() {
         setTimeout(async () => {
             await this.Navigation_helper()

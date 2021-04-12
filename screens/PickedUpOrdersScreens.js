@@ -17,13 +17,9 @@ const PickedUpOrders = props => {
         <View style={
             styles.screen
         }>
-
-{        /**
-         * <PickupCard pickUpLocation='Lahore Rora Bohgun Bedian Rora'/>
+         <PickupCard pickUpLocation='Lahore Rora Bohgun Bedian Rora'/>
 
          <DropOffCard dropOffLocation='Lahore Rora Bohgun Bedian Rora 2423'/>
-         */}
-        
         
         <OrderItemDetail/>
 
