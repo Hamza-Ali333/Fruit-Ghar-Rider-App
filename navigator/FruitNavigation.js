@@ -9,17 +9,21 @@ import Colors from '../constants/Colors';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
+//Screens
 import SplashScreen from '../screens/SplashScreen';
 import LoginScreen from '../screens/LoginScreen';
 import CreateAccountScreen from '../screens/CreateAccountScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import VerificationScreen from '../screens/VerificationScreen';
-import PickUpAndDeliveredScreen from '../screens/AcceptedOrderScreen';
 import PickedUpOrdersScreen from '../screens/PickedUpOrdersScreens';
 import OrderCompeletedScreen from '../screens/OrderCompeletedScreen.js';
 import NewOrdersScreen from '../screens/NewOrdersScreen';
-import OrderPickedUpAndDeliverd from '../screens/AcceptedOrderScreen';
+import OrderDetailScreen from '../screens/OrderDetailScreen';
+import AcceptedOrderScreen from '../screens/AcceptedOrdersScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
+//Main Stack
 const Stack = createStackNavigator();
 
 const MyStack = () => {
@@ -53,6 +57,7 @@ const MyStack = () => {
       <Stack.Screen
         name="pickedUpOrderScreen"
         component={PickedUpOrdersScreen}
+        options={{headerTitle: 'ID: w35 34 r7'}}
       />
       <Stack.Screen
         name="orderCompeletedScreen"
@@ -61,7 +66,8 @@ const MyStack = () => {
       />
       <Stack.Screen
         name="pickedUpAndDeliveryedScreen"
-        component={PickUpAndDeliveredScreen}
+        component={OrderDetailScreen}
+        options={{headerTitle: 'ID: 343 34 f7'}}
       />
       <Stack.Screen name="newOrdersScreen" component={NewOrdersScreen} />
 
@@ -74,15 +80,15 @@ const MyStack = () => {
   );
 };
 
-const OrderPickedUpAndDeliverdStack = createStackNavigator();
-const OrderPickedUpAndDeliverdStackScreen = () => (
-  <OrderPickedUpAndDeliverdStack.Navigator>
-    <OrderPickedUpAndDeliverdStack.Screen
-      name="Home"
-      options={{headerTitle: 'ID : 345 347 23'}}
-      component={OrderPickedUpAndDeliverd}
+const AcceptedOrderStack = createStackNavigator();
+const AcceptedOrderStackScreen = () => (
+  <AcceptedOrderStack.Navigator>
+    <AcceptedOrderStack.Screen
+      name="Accepted"
+      options={{headerTitle: 'Accepted Orders'}}
+      component={AcceptedOrderScreen}
     />
-  </OrderPickedUpAndDeliverdStack.Navigator>
+  </AcceptedOrderStack.Navigator>
 );
 
 const NewOrderStack = createStackNavigator();
@@ -107,6 +113,18 @@ const PickedUpOrdersScreenStackScreen = () => (
   </PickedUpOrdersScreenStack.Navigator>
 );
 
+const ProfileStack = createStackNavigator();
+const ProfileStackScreen = () => (
+  <ProfileStack.Navigator>
+    <ProfileStack.Screen
+      name="New Order"
+      options={{headerShown: false}}
+      component={ProfileScreen}
+    />
+  </ProfileStack.Navigator>
+);
+
+//Buttom Tabs
 const AppTabs = createBottomTabNavigator();
 
 const AppTabsScreen = () => (
@@ -114,7 +132,7 @@ const AppTabsScreen = () => (
     tabBarOptions={{
       showLabel: true,
       showIcon: true,
-      activeTintColor: Colors.buttonColor,
+      activeTintColor: Colors.redColor,
       style: {height: 55, paddingBottom: 10},
     }}>
     <AppTabs.Screen
@@ -124,7 +142,7 @@ const AppTabsScreen = () => (
           <Fontisto
             name="bell"
             size={24}
-            color={focused ? Colors.buttonColor : Colors.textGrayColor}
+            color={focused ? Colors.redColor : Colors.grayColor}
           />
         ),
       }}
@@ -137,12 +155,12 @@ const AppTabsScreen = () => (
           <MaterialCommunityIcons
             name="bike"
             size={24}
-            color={focused ? Colors.buttonColor : Colors.textGrayColor}
+            color={focused ? Colors.redColor : Colors.grayColor}
           />
         ),
       }}
-      name="Accepted"
-      component={OrderPickedUpAndDeliverdStackScreen}
+      name="Accepted Orders"
+      component={AcceptedOrderStackScreen}
     />
     <AppTabs.Screen
       options={{
@@ -150,7 +168,7 @@ const AppTabsScreen = () => (
           <Ionicons
             name="cart-outline"
             size={24}
-            color={focused ? Colors.buttonColor : Colors.textGrayColor}
+            color={focused ? Colors.redColor : Colors.grayColor}
           />
         ),
       }}
@@ -163,12 +181,12 @@ const AppTabsScreen = () => (
           <MaterialCommunityIcons
             name="account-outline"
             size={24}
-            color={focused ? Colors.buttonColor : Colors.textGrayColor}
+            color={focused ? Colors.redColor : Colors.grayColor}
           />
         ),
       }}
       name="Account"
-      component={LoginScreen}
+      component={ProfileStackScreen}
     />
   </AppTabs.Navigator>
 );

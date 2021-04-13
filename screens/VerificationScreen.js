@@ -20,83 +20,88 @@ const ForgotPasswordScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.container}>
-        <HeadingText>Verification</HeadingText>
+      <View style={styles.headingContainer}>
+        <HeadingText style={styles.textAlign}>Verification</HeadingText>
 
-        <NormalText>
+        <NormalText style={styles.textAlign}>
           Enter the OTP code from the phone we just sent you.
         </NormalText>
-
-        <View style={styles.inputContainers}>
-          <MyTextInput
-            style={styles.input}
-            placeholder="0"
-            maxLength={1}
-            keyboardType="numeric"
-            onChangeText={pin1 => {
-              setPin1(pin1);
-            }}
-            value={pin1}
-          />
-          <MyTextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            maxLength={1}
-            onChangeText={pin2 => {
-              setPin2(pin2);
-            }}
-          />
-          <MyTextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            maxLength={1}
-            onChangeText={pin3 => {
-              setPin3(pin3);
-            }}
-          />
-          <MyTextInput
-            style={styles.input}
-            placeholder="0"
-            keyboardType="numeric"
-            maxLength={1}
-            onChangeText={pin4 => {
-              setPin4(pin4);
-            }}
-          />
-        </View>
-
-        {/* Error Text Visibility Checking first time should be hide*/}
-        {errorVisibility ? (
-          <ErrorText
-            style={{
-              marginTop: 10,
-            }}>
-            Oh no! You entered wrong OTP code, please check it again.
-          </ErrorText>
-        ) : null}
-
-        <View style={styles.resendCodeText}>
-          <NormalText>Didn’t receive OTP code!</NormalText>
-          <TouchableOpacity>
-            <NormalText
-              style={{
-                fontFamily: 'SFPro-Bold',
-                marginLeft: 5,
-              }}
-              onPress={() => {}}>
-              Resend
-            </NormalText>
-          </TouchableOpacity>
-        </View>
-        <MyButton
-          onPress={() => {
-            props.navigation.navigate('AppTabsScreen');
-          }}>
-          Verfiy
-        </MyButton>
       </View>
+
+      <View style={styles.inputContainers}>
+        <MyTextInput
+          style={styles.input}
+          placeholder="0"
+          maxLength={1}
+          keyboardType="numeric"
+          onChangeText={pin1 => {
+            setPin1(pin1);
+          }}
+          value={pin1}
+        />
+        <MyTextInput
+          style={styles.input}
+          placeholder="0"
+          keyboardType="numeric"
+          maxLength={1}
+          onChangeText={pin2 => {
+            setPin2(pin2);
+          }}
+        />
+        <MyTextInput
+          style={styles.input}
+          placeholder="0"
+          keyboardType="numeric"
+          maxLength={1}
+          onChangeText={pin3 => {
+            setPin3(pin3);
+          }}
+        />
+        <MyTextInput
+          style={styles.input}
+          placeholder="0"
+          keyboardType="numeric"
+          maxLength={1}
+          onChangeText={pin4 => {
+            setPin4(pin4);
+          }}
+        />
+      </View>
+
+      {/* Error Text Visibility Checking first time should be hide*/}
+      {errorVisibility ? (
+        <ErrorText
+          style={{
+            marginTop: 10,
+          }}>
+          Oh no! You entered wrong OTP code, please check it again.
+        </ErrorText>
+      ) : null}
+
+      <View style={styles.resendCodeText}>
+        <NormalText>Didn’t receive OTP code!</NormalText>
+        <TouchableOpacity>
+          <NormalText
+            style={{
+              fontFamily: 'SFPro-Bold',
+              marginLeft: 5,
+              fontWeight: 'bold',
+              color: Colors.redColor,
+            }}
+            onPress={() => {}}>
+            Resend
+          </NormalText>
+        </TouchableOpacity>
+      </View>
+      <MyButton
+        style={{
+          marginTop: 16,
+        }}
+        onPress={() => {
+          props.navigation.navigate('AppTabsScreen');
+        }}>
+        Verfiy
+      </MyButton>
     </View>
   );
 };
@@ -104,17 +109,24 @@ const ForgotPasswordScreen = props => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: Paddings.normalPadding,
+    paddingTop: 20,
+    paddingLeft: Paddings.normalPadding,
+    paddingRight: Paddings.normalPadding,
     backgroundColor: Colors.backgroundColor,
+    alignItems: 'center',
   },
-  container: {
-    marginTop: 20,
+  headingContainer: {
+    width: '90%',
+  },
+  textAlign: {
+    textAlign: 'left',
   },
   resendCodeText: {
     marginTop: 20,
     flexDirection: 'row',
     alignItems: 'center',
     fontSize: 16,
+    width: '90%',
   },
   inputContainers: {
     flexDirection: 'row',

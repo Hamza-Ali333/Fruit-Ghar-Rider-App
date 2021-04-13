@@ -10,11 +10,7 @@ const OrderCompeletedScreen = props => {
   return (
     <View style={styles.screen}>
       <View style={styles.container}>
-        <Ionicons
-          name="checkmark-circle"
-          size={120}
-          color={Colors.buttonColor}
-        />
+        <Ionicons name="checkmark-circle" size={120} color={Colors.redColor} />
         <NormalText>Delivered</NormalText>
       </View>
     </View>
