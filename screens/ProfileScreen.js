@@ -113,6 +113,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.redColor,
     alignItems: 'center',
     justifyContent: 'center',
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
   },
   userProfile: {
     width: 100,
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: -35,
     flexDirection: 'row',
-    shadowColor: Colors.textColor,
+    shadowColor: Colors.blackColor,
     backgroundColor: Colors.whiteColor,
     elevation: 10,
     alignSelf: 'center',
@@ -160,8 +162,6 @@ const styles = StyleSheet.create({
   whiteAeraContainer: {
     flex: 3,
     paddingVertical: 30,
-    borderTopLeftRadius: 35,
-    borderTopRightRadius: 35,
     backgroundColor: Colors.backgroundColor,
   },
   iconAndTextContainer: {
