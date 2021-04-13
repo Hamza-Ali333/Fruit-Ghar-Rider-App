@@ -131,7 +131,7 @@ export default class LoginScreen extends React.Component {
         <View style={styles.notHaveAcountTextContainer}>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.push('createAccountScreen');
+              this.props.navigation.navigate('createAccountScreen');
             }}
             style={styles.newAcountText}>
             <NormalText>You don’t have an account?</NormalText>

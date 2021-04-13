@@ -13,6 +13,8 @@ import Paddings from '../constants/Paddings';
 import NormalText from '../components/NormalText';
 import RedColorText from './RedColorText';
 
+import * as NavigationService from '../NavigationService.js';
+
 const OrderItem = props => {
   let TouchableCmp = TouchableOpacity;
 
@@ -21,43 +23,48 @@ const OrderItem = props => {
   }
 
   return (
-    <View style={{...styles.screen, ...props.style}}>
-      <ImageBackground
-        style={styles.orderItemImage}
-        resizeMode="contain"
-        source={{uri: props.image}}></ImageBackground>
+    <TouchableOpacity
+      onPress={() => {
+        NavigationService.navigate('pickedUpAndDeliveryedScreen');
+      }}>
+      <View style={{...styles.screen, ...props.style}}>
+        <ImageBackground
+          style={styles.orderItemImage}
+          resizeMode="contain"
+          source={{uri: props.image}}></ImageBackground>
 
-      <View style={styles.orderItemTextContainer}>
-        <NormalText>Orange</NormalText>
+        <View style={styles.orderItemTextContainer}>
+          <NormalText>Orange</NormalText>
 
-        <View
-          style={{
-            flexDirection: 'row',
-          }}>
-          <RedColorText>ID:</RedColorText>
-          <NormalText style={styles.orderId}>3544546</NormalText>
-        </View>
+          <View
+            style={{
+              flexDirection: 'row',
+            }}>
+            <RedColorText>ID:</RedColorText>
+            <NormalText style={styles.orderId}>3544546</NormalText>
+          </View>
 
-        <NormalText
-          style={{
-            color: Colors.grayColor,
-          }}>
-          2 Kg
-        </NormalText>
+          <NormalText
+            style={{
+              color: Colors.grayColor,
+            }}>
+            2 Kg
+          </NormalText>
 
-        <View
-          style={{
-            flexDirection: 'row',
-            width: '85%',
-            marginTop: 5,
-            justifyContent: 'flex-end',
-          }}>
-          <TouchableCmp onPress={props.onClick}>
-            <RedColorText>{props.orderStatus}</RedColorText>
-          </TouchableCmp>
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '85%',
+              marginTop: 5,
+              justifyContent: 'flex-end',
+            }}>
+            <TouchableCmp onPress={props.onClick}>
+              <RedColorText>{props.orderStatus}</RedColorText>
+            </TouchableCmp>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

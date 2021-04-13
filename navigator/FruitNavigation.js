@@ -23,6 +23,10 @@ import OrderDetailScreen from '../screens/OrderDetailScreen';
 import AcceptedOrderScreen from '../screens/AcceptedOrdersScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
+//LocationScreen Temporary
+import DropOffLocationScreen from '../screens/DropOffLocatioon';
+import PickUpLocationScreen from '../screens/PickUpLocatioon';
+
 //Main Stack
 const Stack = createStackNavigator();
 
@@ -34,6 +38,19 @@ const MyStack = () => {
         component={SplashScreen}
         options={{headerShown: false}}
       />
+
+      <Stack.Screen
+        name="pickUpLocation"
+        component={PickUpLocationScreen}
+        options={{headerShown: true, headerTitle: 'Pick Up Location'}}
+      />
+
+      <Stack.Screen
+        name="dropOffLocation"
+        component={DropOffLocationScreen}
+        options={{headerShown: true, headerTitle: 'Drop Off Location'}}
+      />
+
       <Stack.Screen
         name="loginScreen"
         options={{headerShown: false}}

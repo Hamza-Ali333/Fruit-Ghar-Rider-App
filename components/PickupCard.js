@@ -9,6 +9,8 @@ import Paddings from '../constants/Paddings';
 import NormalText from './NormalText';
 import RedColorText from './RedColorText';
 
+import * as NavigationService from '../NavigationService.js';
+
 const PickupCard = props => {
   return (
     <View style={{...styles.screen, ...props.style}}>
@@ -36,7 +38,13 @@ const PickupCard = props => {
         </TouchableOpacity>
       </View>
 
-      <MyButton style={styles.button}>Location</MyButton>
+      <MyButton
+        style={styles.button}
+        onPress={() => {
+          NavigationService.navigate('pickUpLocation');
+        }}>
+        Location
+      </MyButton>
     </View>
   );
 };
@@ -45,6 +53,7 @@ const styles = StyleSheet.create({
   screen: {
     height: 150,
     width: '100%',
+    marginTop: 10,
     padding: Paddings.normalPadding,
     backgroundColor: Colors.whiteColor,
     borderRadius: 10,

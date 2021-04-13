@@ -3,5 +3,6 @@ export default {
   grayColor: '#8F9BB3',
   textColor: '#222B45',
   whiteColor: '#FFFFFF',
+  blackColor:'#000000',
   backgroundColor: '#F7F9FC',
 };

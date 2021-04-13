@@ -8,6 +8,8 @@ import Colors from '../constants/Colors';
 import Paddings from '../constants/Paddings';
 import NormalText from './NormalText';
 
+import * as NavigationService from '../NavigationService.js';
+
 const DropOffCard = props => {
   return (
     <View style={{...styles.screen, ...props.style}}>
@@ -36,7 +38,13 @@ const DropOffCard = props => {
       </View>
 
       <View style={styles.buttonContainer}>
-        <MyButton style={styles.button}>Location</MyButton>
+        <MyButton
+          style={styles.button}
+          onPress={() => {
+            NavigationService.navigate('dropOffLocation');
+          }}>
+          Location
+        </MyButton>
         <MyButton style={styles.button}>Call Now</MyButton>
       </View>
     </View>

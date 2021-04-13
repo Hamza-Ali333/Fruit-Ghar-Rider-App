@@ -9,10 +9,12 @@ import RedColorText from '../components/RedColorText';
 import PickupCard from '../components/PickupCard';
 import DropOffCard from '../components/DropOffCard';
 import OrderItemDetail from '../components/OrderItemDetail';
+import UserInfoCard from '../components/UserInfoCard';
 
 const OrderPickedUpAndDeliverd = props => {
   return (
     <View style={styles.screen}>
+      <UserInfoCard />
       <PickupCard pickUpLocation="Lahore Rora Bohgun Bedian Rora" />
 
       <DropOffCard dropOffLocation="Lahore Rora Bohgun Bedian Rora 2423" />
@@ -26,7 +28,6 @@ const OrderPickedUpAndDeliverd = props => {
         onPress={() => {
           props.navigation.navigate('pickedUpOrderScreen');
         }}>
-        {' '}
         Picked Up
       </MyButton>
     </View>
