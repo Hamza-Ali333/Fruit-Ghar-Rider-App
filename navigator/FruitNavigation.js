@@ -12,8 +12,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 //Screens
 import SplashScreen from '../screens/SplashScreen';
-import LoginScreen from '../screens/LoginScreen';
-import CreateAccountScreen from '../screens/CreateAccountScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import CreateAccountScreen from '../screens/auth/CreateAccountScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import VerificationScreen from '../screens/VerificationScreen';
 import PickedUpOrdersScreen from '../screens/PickedUpOrdersScreens';

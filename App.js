@@ -1,10 +1,11 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import FruitNavigator from './navigator/FruitNavigation';
-import {navigationRef} from './NavigationService';
-import * as NavigationService from './NavigationService.js';
+import {navigationRef} from './navigator/NavigationService';
+import * as NavigationService from './navigator/NavigationService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
+import Checking from './screens/sotered';
 
 export default class App extends React.Component {
   async componentDidMount() {
@@ -22,9 +23,10 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <NavigationContainer ref={navigationRef}>
-        <FruitNavigator />
-      </NavigationContainer>
+      // <NavigationContainer ref={navigationRef}>
+      //   <FruitNavigator />
+      // </NavigationContainer>
+      <Checking />
     );
   }
 }

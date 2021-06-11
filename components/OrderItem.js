@@ -13,7 +13,7 @@ import Paddings from '../constants/Paddings';
 import NormalText from '../components/NormalText';
 import RedColorText from './RedColorText';
 
-import * as NavigationService from '../NavigationService.js';
+import * as NavigationService from '../navigator/NavigationService.js';
 
 const OrderItem = props => {
   let TouchableCmp = TouchableOpacity;

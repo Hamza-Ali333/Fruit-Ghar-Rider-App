@@ -8,7 +8,7 @@ import Colors from '../constants/Colors';
 import Paddings from '../constants/Paddings';
 import NormalText from './NormalText';
 
-import * as NavigationService from '../NavigationService.js';
+import * as NavigationService from '../navigator/NavigationService';
 
 const DropOffCard = props => {
   return (

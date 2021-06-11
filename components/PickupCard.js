@@ -9,7 +9,7 @@ import Paddings from '../constants/Paddings';
 import NormalText from './NormalText';
 import RedColorText from './RedColorText';
 
-import * as NavigationService from '../NavigationService.js';
+import * as NavigationService from '../navigator/NavigationService';
 
 const PickupCard = props => {
   return (
